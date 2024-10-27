@@ -29,10 +29,11 @@ local function teleportToOctagonPartInModel(model, targetYLevel)
         if octagonPart:IsA("MeshPart") and octagonPart.Name == "OctagonPart" then
             local yPos = octagonPart.Position.Y
             if yPos >= (targetYLevel - 1) and yPos <= (targetYLevel + 1) then  -- Check y level within 1 stud
-                humanoidRootPart.CFrame = octagonPart.CFrame -- Teleport player to OctagonPart's CFrame
+                -- Teleport player 5 studs below the OctagonPart
+                humanoidRootPart.CFrame = CFrame.new(octagonPart.Position.X, yPos - 5, octagonPart.Position.Z) 
                 octagonPart.Transparency = 0                  -- Set the OctagonPart transparency to 0%
                 highlightPart(octagonPart)                    -- Highlight the OctagonPart
-                print("Teleported to OctagonPart at Y level:", yPos)
+                print("Teleported to 5 studs below OctagonPart at Y level:", yPos)
                 found = true
                 break  -- Exit the loop if found
             end
